@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
         'telefono',
         'direccion',
     ];
@@ -43,4 +44,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /* Relación con el modelo Carrito.
+    Un usuario puede tener varios elementos en su carrito.
+    */
+   public function carritos()
+   {
+       return $this->hasMany(Carrito::class);
+   }
 }

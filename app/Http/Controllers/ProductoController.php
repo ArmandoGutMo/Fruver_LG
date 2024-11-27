@@ -11,9 +11,22 @@ class ProductoController extends Controller
     /**
      * Mostrar una lista del recurso.
      */
-    public function index()
+    public function index(Request $request)
     {
+        // Obtener todos los productos
         $product = Producto::all();
+
+        $query = $request->input('query');
+
+        // Si hay un término de búsqueda, filtra los productos por nombre
+        if ($query) {
+            $product = Producto::where('nombre', 'LIKE', "%{$query}%")->get();
+        } else {
+            // Si no hay búsqueda, muestra todos los productos
+            $product = Producto::all();
+        }
+
+        // Pasar la variable 'product' a la vista
         return view('productos.index', compact('product'));
     }
 
@@ -22,7 +35,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('productos.create');
+        $product = Producto::all();
+        return view('productos.create', compact('product'));
     }
 
     /**
@@ -37,7 +51,7 @@ class ProductoController extends Controller
         $product = new Producto();
         $product->nombre = $request->input('nombre');
         $product->precio = $request->input('precio');
-        $product->promocion = $request->input('promocion');
+        $product->promocion = $request->input('promocion',null);
 
         if ($request->hasFile('imagen')) {
             $product->imagen = $request->file('imagen')->store('public/productos');
@@ -129,8 +143,8 @@ class ProductoController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'precio' => 'required|numeric',
-            'promocion' => 'required|string|max:255',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'promocion' => 'nullable|string|max:255',
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], $messages);
     }
 }

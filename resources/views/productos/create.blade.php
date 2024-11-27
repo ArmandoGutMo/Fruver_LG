@@ -82,6 +82,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mb-3">
                 <label for="promocion" class="form-label">Promoción</label>
                 <input type="text" class="form-control" id="promocion" name="promocion" value="{{ old('promocion') }}">

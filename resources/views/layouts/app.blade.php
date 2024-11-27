@@ -8,7 +8,7 @@
     <title>La Galemba @yield('title')</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/catalogo.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 
@@ -21,12 +21,14 @@
 
         body {
             font-family: Arial, sans-serif;
-            overflow-x: hidden; /* Oculta el desbordamiento horizontal */
+            overflow-x: hidden;
+            /* Oculta el desbordamiento horizontal */
         }
 
         .navbar {
             background-color: #2ac52f;
             width: 100%;
+            height: 190px;
             margin: 0 auto;
             padding: 0;
             box-sizing: border-box;
@@ -42,42 +44,33 @@
         }
 
         .navbar .nav-item .nav-link {
-            font-size: 25px;
-            /* Tamaño de la fuente */
+            font-size: 30px;
             font-weight: bolder;
-            /* Grosor de la fuente */
             color: #bc2e07;
-            /* Color del texto */
             font-family: system-ui;
-            /* Estilo de la fuente */
         }
 
         .navbar .nav-item .nav-link:hover {
             color: #f5e42e;
-            /* Color del texto al pasar el cursor */
             text-decoration: underline;
-            /* Subrayar al pasar el cursor */
         }
 
         .d-flex .form-control {
             width: 300px;
-            /* Ajusta el ancho del campo de búsqueda */
             font-size: 20px;
-            /* Ajusta el tamaño de la fuente del campo de búsqueda */
         }
 
         .d-flex .btn-warning {
             font-size: 20px;
-            /* Ajusta el tamaño del botón de búsqueda */
             padding: 9px 28px;
-            /* Ajusta el padding del botón */
         }
 
         .navbar-brand img {
             height: 150px;
-            padding: 10px;
+            padding: 15px;
             max-width: 100%;
             box-sizing: border-box;
+            margin-top: 18%;
         }
 
         img {
@@ -91,8 +84,8 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('imagenes/LOGO FRUVER (1).png') }}" alt="Logo Fruver"
-                    style="height: 150px; padding: 0px;">
+                <img src="{{ asset('imagenes/LOGO FRUVER.png') }}" alt="Logo Fruver"
+                    style="height: 158px; padding: 0px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -102,22 +95,42 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Inicio</a>
+                        <a class="nav-link" href="{{ route('home.index') }}">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('productos.index') }}">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Mi carrito</a>
+                        <a class="nav-link" href="{{ route('carrito.index') }}">Mi carrito</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Mi cuenta</a>
                     </li>
+                    @auth
+
+                        <!-- Botón de Cerrar Sesión -->
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-link nav-link"
+                                    style="display: inline-block; cursor: pointer;">
+                                    Cerrar Sesión
+                                </button>
+                            </form>
+                        </li>
+                    @else
+                    @endauth
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="¿Qué producto buscas?"
-                        aria-label="search">
-                    <button type="button" class="btn btn-warning">Buscar</button>
+                </ul>
+
+                <form method="GET" action="{{ route('productos.index') }}" class="mb-3">
+                    <div class="input-group">
+                        <input type="text" name="query" value="{{ request()->query('query') }}"
+                            class="form-control" placeholder="¿Que producto buscas?" aria-label="Buscar producto">
+                        <button class="btn btn-warning"
+                            style= "font-weight: bold; font-size: 23px; border: 4px solid #989302d6; color: #932e02;"
+                            type="submit">Buscar</button>
+                    </div>
                 </form>
             </div>
         </div>
