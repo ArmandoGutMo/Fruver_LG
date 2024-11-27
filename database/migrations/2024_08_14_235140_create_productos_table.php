@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('promocion', 100);
             $table->string('imagen');
             $table->timestamps();
+
+            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

@@ -1,34 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laravel Bootstrap Test</title>
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js') <!-- Asegúrate de que esté aquí -->
-</head>
-<body>
-    <div class="container mt-5">
-        <h1 class="mb-4">Bootstrap en Laravel</h1>
+@extends('layouts.app')
 
-        <!-- Botón de Bootstrap -->
-        <button type="button" class="btn btn-primary mb-3">Botón Primario</button>
+@section('title', 'Carrito de Compras')
 
-        <!-- Alerta de Bootstrap -->
-        <div class="alert alert-success" role="alert">
-            Esto es una alerta de Bootstrap.
-        </div>
+@section('content')
 
-        <!-- Tarjeta de Bootstrap -->
-        <div class="card" style="width: 18rem;">
-            <img src="https://via.placeholder.com/150" class="card-img-top" alt="Imagen de ejemplo">
-            <div class="card-body">
-                <h5 class="card-title">Título de la Tarjeta</h5>
-                <p class="card-text">Este es un ejemplo de tarjeta de Bootstrap. Puedes agregar contenido aquí.</p>
-                <a href="#" class="btn btn-primary">Ir a algún lugar</a>
+<div class="row justify-content-center contactanos"
+        style="background-color: #066915; max-height: 700px; overflow: hidden;">
+        <div class="col-md-7">
+            <div>
+                <br>
+                <br>
+                <figure class="text-center">
+                    <blockquote class="blockquote">
+                        <h1 class="text-rigth fw-bolder" style="color: #f3f9f4fa; font-size: 40px;">¡Bienvenidos a La Galemba Tienda Online!</h1>
+                    </blockquote>
+                    <br>
+                </figure>
+                <div class="col-12 text-center">
+                    <img src="{{ asset('imagenes/LOGO FRUVER.png') }}" alt="Imagen de contacto"
+                        class="img-fluid mx-auto d-block" style="height: 270px; padding: 2px;">
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <h3 class="text-rigth fw-bolder" style="color: #ffc66bfa; font-size: 25px; margin-bottom:50px;">Nos alegra que estés con nosotros. Disfruta de una experiencia única, donde puedes explorar y aprovechar al máximo todo lo que tenemos para ofrecerte.</h3>
+                </div>
+
             </div>
         </div>
-    </div>
-</body>
-</html>
 
+        <!-- Tarjeta Promociones -->
+        <div class="col-md-5"
+        style="background-color: #f2f9f3; max-height: 700px; overflow: hidden;">
+
+        <div class="row mt-4">
+        <div class="col-12 text-center">
+            <h1 class="text-rigth fw-bolder" style="color: #bd7b09fa; font-size: 45px; padding: 60px;">¡Comienza tu recorrido y descubre todo lo que tenemos para ti!</h1>
+        </div>
+
+        <div class="col-12 text-center">
+            <h3 class="text-rigth fw-bolder" style="color: #d88b06fa; font-size: 35px;">Iniciar como:</h3>
+        </div>
+        </div>
+
+        <div class="col-12 text-center mt-4">
+            <a href="{{ route('admin.register') }}" class="btn btn-warning"
+                style= "font-weight: bold; font-size: 20px; border: 4px solid #989302d6; color: #932e02;">
+                Administrador
+            </a>
+        </div>
+
+        <div class="col-12 text-center mt-4">
+            <a href="{{ route('register') }}" class="btn btn-warning"
+                style= "font-weight: bold; font-size: 20px; border: 4px solid #989302d6; color: #932e02;">
+                Cliente
+            </a>
+        </div>
+
+
+        </div>
+    </div>
+
+@endsection

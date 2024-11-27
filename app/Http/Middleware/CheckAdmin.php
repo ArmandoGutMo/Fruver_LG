@@ -14,7 +14,7 @@ class CheckAdmin
         // Verificar si el usuario está autenticado y si tiene el rol 'admin'
         if (!Auth::check() || Auth::user()->role !== 'admin') {
             // Si no está autenticado o no es administrador, redirigir al login
-            return redirect()->route('login');  // O usa otra ruta de tu preferencia
+            return redirect()->route('productos.index');  // O usa otra ruta de tu preferencia
         }
 
         return $next($request);  // Permitir el acceso si es administrador

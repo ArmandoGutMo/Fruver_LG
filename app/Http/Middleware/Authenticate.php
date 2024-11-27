@@ -18,7 +18,7 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         if (!Auth::check()) {
-            return redirect()->route('login');
+            return redirect()->route('productos.index');
         }
 
         return $next($request);

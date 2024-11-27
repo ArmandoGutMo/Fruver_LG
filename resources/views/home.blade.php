@@ -5,7 +5,7 @@
 @section('content')
 
     <style>
-.carousel-inner {
+        .carousel-inner {
             margin-top: 0;
             margin-bottom: 0;
         }
@@ -213,7 +213,6 @@
             </div>
         </div>
     </div>
-
 
 
     <!-- Seccion Contactanos-->

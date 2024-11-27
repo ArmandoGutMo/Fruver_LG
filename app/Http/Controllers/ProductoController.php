@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Categoria;
+
 
 class ProductoController extends Controller
 {
@@ -13,8 +15,7 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
-        // Obtener todos los productos
-        $product = Producto::all();
+
 
         $query = $request->input('query');
 

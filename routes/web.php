@@ -50,7 +50,7 @@ Route::post('admin/register', [AdminRegisteredUserController::class, 'store'])->
 Route::resource('/productos', ProductoController::class);
 
 Route::middleware([CheckAdmin::class])->group(function () {
-    Route::resource('productos.index', ProductoController::class);
+    Route::resource('/productos.index', ProductoController::class);
 });
 
 

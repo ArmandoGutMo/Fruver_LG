@@ -26,7 +26,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended('login');
+        if (Auth::user()->is_admin) {
+            return redirect()->route('productos.index');  // Administrador
+        } else {
+            return redirect()->route('productos.index');  // Cliente
+        }
     }
 
 

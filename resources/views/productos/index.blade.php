@@ -32,21 +32,27 @@
             margin-left: 50px;
             /* Ajusta este valor según sea necesario */
         }
+
+        .btn-container {
+            margin-bottom: 50px;
+        }
+
+
     </style>
 
 
 
-    <h1 class="text-center fw-bolder" style="color: #b61004fa; font-size: 50px;">Catálogo de Productos</h1>
+    <h1 class="text-center fw-bolder" style="color: #b61004fa; font-size: 55px; padding: 40px;">Catálogo de Productos</h1>
 
     <div class="container btn-container">
 
         @auth
             @if (Auth::user()->role === 'cliente')
                 <a href="{{ route('carrito.index') }}" class="btn btn-warning btn-align-right"
-                    style="font-weight: bold; font-size: 20px; border: 4px solid #989302d6; color: #932e02;">Mi carrito</a>
+                    style="font-weight: bold; font-size: 22px; border: 4px solid #989302d6; color: #932e02;">Mi carrito</a>
             @elseif (Auth::user()->role === 'admin')
                 <a href="{{ route('productos.create') }}" class="btn btn-warning btn-align-right"
-                    style="font-weight: bold; font-size: 20px; border: 4px solid #989302d6; color: #932e02;">Editar catalogo</a>
+                    style="font-weight: bold; font-size: 22px; border: 4px solid #989302d6; color: #932e02;">Editar catalogo</a>
             @endif
         @endauth
 
